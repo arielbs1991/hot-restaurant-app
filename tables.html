@@ -211,6 +211,7 @@
             .contact {
                 height: 100vh;
             }
+
             .inputItem {
                 width: 90%;
                 margin: 5px;
@@ -354,37 +355,47 @@
         <h1>Tables</h1>
         <hr>
         <div id="table">
-            <h3><strong>1:</strong> <span class = "unique-ID">ID</span></h3>
-            <h3><strong>2:</strong> <span class = "unique-ID">ID</span></h3>
-            <h3><strong>3:</strong> <span class = "unique-ID">ID</span></h3>
-            <h3><strong>4:</strong> <span class = "unique-ID">ID</span></h3>
-            <h3><strong>1:</strong> <span class = "unique-ID">ID</span></h3>
         </div>
     </main>
     <main class="portfolio-item animate__animated animate__fadeIn">
         <h1>Waitlist</h1>
         <hr>
         <div id="waitlist">
-            <h3><strong>Name:</strong> <span id="name">Jedi Master</span></h3>
-            <h3><strong>Phone Number:</strong> <span id="phone-number">900</span></h3>
-            <h3><strong>Email:</strong> <span id="Email">2000</span></h3>
-            <h3><strong>Unique ID:</strong> <span id="Unqiue-ID">2000</span></h3>
         </div>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
-          $.get("/api/tables/", function(data) {
-            data.forEach(table =>
-            {if (data) {
-              $("#table").show();
-              $(".unique-ID").text(data.uniqueId);
-            } else {
-              $("#table").hide();
+        $.get("/api/tables/", function (data) {
+            if (data) {
+                console.log(data)
+                var count = 1
+                data.forEach(table => {
+                    $("#table").show();
+                    var newHead = `<h3><strong>${count}:</strong> <span class="unique-ID">${table.uniqueId}</span></h3>`
+                    $("#table").append(newHead)
+                    count ++
+                })
+            }else{
+                $("#table").hide();
             }
+
         })
-            
-          });
-    
-      </script>
+        $.get("/api/waitlist/", function (data) {
+            if (data) {
+                console.log(data)
+                var count = 1
+                data.forEach(table => {
+                    $("#waitlist").show();
+                    var newHead = `<h3><strong>${count}:</strong> <span class="unique-ID">${table.uniqueId}</span></h3>`
+                    $("#waitlist").append(newHead)
+                    count ++
+                })
+            }else{
+                $("#waitlist").hide();
+            }
+
+        })
+    </script>
 </body>
 
 </html>
