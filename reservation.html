@@ -211,6 +211,7 @@
             .contact {
                 height: 100vh;
             }
+
             .inputItem {
                 width: 90%;
                 margin: 5px;
@@ -377,26 +378,31 @@
         </form>
         <br>
         <div class="text-right">
-          <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Submit</button>
+            <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
+                Submit</button>
         </div>
     </main>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-        $("#add-btn").on("click", function(event) {
-          event.preventDefault();
-          var newReservation = {
-            name: $("#name").val().trim(),
-            phoneNumber: $("#phone-number").val().trim(),
-            email: $("#email").val().trim(),
-            uniqueId: $("#unique-id").val().trim()
-          };
-    
-          $.post("/api/guests", newReservation)
-            .then(function(data) {
-            });
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            var newReservation = {
+                name: $("#name").val().trim(),
+                phoneNumber: $("#phone-number").val().trim(),
+                email: $("#email").val().trim(),
+                uniqueId: $("#unique-id").val().trim()
+            };
+
+            $.post("/api/guests", newReservation)
+                .then(function (data) {
+                    window.location = "/tables"
+                });
         });
-      </script>
+    </script>
+    
+    
+
 </body>
 
 </html>
