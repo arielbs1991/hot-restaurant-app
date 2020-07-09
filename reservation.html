@@ -288,7 +288,7 @@
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="logo">
-                <a href="index.html" class="nav-link">
+                <a href="/" class="nav-link">
                     <span class="link-text logo-text">Hot Restaurant</span>
                     <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right"
                         role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
@@ -306,7 +306,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="tables.html" class="nav-link">
+                <a href="/tables.html" class="nav-link">
                     <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="alien-monster" role="img"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 512"
                         class="svg-inline--fa fa-alien-monster fa-w-18 fa-9x">
@@ -325,7 +325,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="reservation.html" class="nav-link">
+                <a href="/reservation.html" class="nav-link">
                     <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="computer-alt" role="img"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 512"
                         class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x">
@@ -375,7 +375,28 @@
             </div>
 
         </form>
+        <br>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Submit</button>
+        </div>
     </main>
+
+    <script type="text/javascript">
+
+        $("#add-btn").on("click", function(event) {
+          event.preventDefault();
+          var newReservation = {
+            name: $("#name").val().trim(),
+            phoneNumber: $("#phone-number").val().trim(),
+            email: $("#email").val().trim(),
+            uniqueId: $("#unique-id").val().trim()
+          };
+    
+          $.post("/api/guests", newReservation)
+            .then(function(data) {
+            });
+        });
+      </script>
 </body>
 
 </html>
